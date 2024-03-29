@@ -9,6 +9,10 @@ router.put("/users/:id", userControllers.update);
 router.delete("/users/:id", userControllers.destroy);
 
 // API Bank_Account
+const accountControllers = require("../../controllers/v1/accountControllers");
+router.post("/accounts", accountControllers.register);
+router.get("/accounts", accountControllers.index);
+router.get("/accounts/:id", accountControllers.show);
 
 // API Transactions
 

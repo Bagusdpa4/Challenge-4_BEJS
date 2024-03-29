@@ -29,3 +29,20 @@ Content-Type: application/json
 
 ### Delete users by id
 DELETE http://localhost:3000/api/v1/users/4
+
+### Create Account user
+POST http://localhost:3000/api/v1/accounts
+Content-Type: application/json
+
+{
+    "bank_name": "BNI",
+    "bank_account_number": "13419882000",
+    "balance": 50000,
+    "user_id": 9
+}
+
+### Get all Account user
+GET http://localhost:3000/api/v1/accounts
+
+### Get all Account user by id
+GET http://localhost:3000/api/v1/accounts/7

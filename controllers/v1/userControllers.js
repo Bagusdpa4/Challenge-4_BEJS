@@ -101,7 +101,7 @@ module.exports = {
       ) {
         return res.status(400).json({
           status: false,
-          message: "At least one field must be provided for update",
+          message: "At least one data must be provided for update",
           data: null,
         });
       }
