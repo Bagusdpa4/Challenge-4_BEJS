@@ -3,16 +3,16 @@ POST http://localhost:3000/api/v1/transactions
 Content-Type: application/json
 
 {
-    "amount": 100000,
-    "source_account_id": 50,
-    "destination_account_id": 9
+    "amount": 50000,
+    "source_account_id": 10,
+    "destination_account_id": 1
 }
 
 ### Get all Transaction
 GET http://localhost:3000/api/v1/transactions
 
 ### Get Transaction by id
-GET http://localhost:3000/api/v1/transactions/1
+GET http://localhost:3000/api/v1/transactions/4
 
 ### Delete Transaction user by id
-Delete http://localhost:3000/api/v1/transactions/1
+Delete http://localhost:3000/api/v1/transactions/4

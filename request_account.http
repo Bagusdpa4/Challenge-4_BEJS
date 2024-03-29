@@ -3,17 +3,17 @@ POST http://localhost:3000/api/v1/accounts
 Content-Type: application/json
 
 {
-    "bank_name": "Mandiri",
-    "bank_account_number": "22082010900",
-    "balance": 500000,
-    "user_id": 5
+    "bank_name": "Testing",
+    "bank_account_number": "21082010195",
+    "balance": 1000000,
+    "user_id": 13
 }
 
 ### Get all Account user
 GET http://localhost:3000/api/v1/accounts
 
 ### Get all Account user by id
-GET http://localhost:3000/api/v1/accounts/7
+GET http://localhost:3000/api/v1/accounts/10
 
 ### Delete Account by id
-DELETE http://localhost:3000/api/v1/accounts/4
+DELETE http://localhost:3000/api/v1/accounts/7
