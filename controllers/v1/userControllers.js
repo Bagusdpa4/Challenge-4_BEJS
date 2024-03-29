@@ -157,7 +157,7 @@ module.exports = {
       }
 
       await prisma.profile.deleteMany({
-        where: { id },
+        where: { user_id: id },
       });
       
       await prisma.user.delete({
