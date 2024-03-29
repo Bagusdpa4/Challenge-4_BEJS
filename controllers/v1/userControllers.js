@@ -11,28 +11,16 @@ module.exports = {
           where: { email },
         });
 
-        if (!name) {
+        if (!name || !email || !password || !identity_type || !identity_number || !address) {
           return res.status(400).json({
             status: false,
-            message: "Name must be required",
-            data: null,
-          });
-        } else if (!email) {
-          return res.status(400).json({
-            status: false,
-            message: "Email must be required",
-            data: null,
-          });
-        } else if (!password) {
-          return res.status(400).json({
-            status: false,
-            message: "Password must be required",
+            message: "Input must be required",
             data: null,
           });
         } else if (exist) {
           return res.status(400).json({
             status: false,
-            message: "email already used!",
+            message: "Email already used!",
           });
         }
 
