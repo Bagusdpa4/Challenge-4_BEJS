@@ -3,12 +3,12 @@ POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-    "name": "Test",
-    "email": "Test@gmail.com",
-    "password": "Test123",
-    "identity_type": "Testing",
-    "identity_number": "123123123",
-    "address": "Jalan Kebenaran"
+    "name": "Soleh",
+    "email": "Soleh@gmail.com",
+    "password": "Soleh123",
+    "identity_type": "",
+    "identity_number": "",
+    "address": ""
 }
 
 ### Get all users
@@ -18,16 +18,13 @@ GET http://localhost:3000/api/v1/users
 GET http://localhost:3000/api/v1/users/4
 
 ### Update users by id
-PUT http://localhost:3000/api/v1/users/3
+PUT http://localhost:3000/api/v1/users/5
 Content-Type: application/json
 
 {
-    "name": "Paijo",
-    "email": "Paijo@gmail.com",
-    "password": "Paijo123",
-    "identity_type": "Pasport",
-    "identity_number": "123123123",
-    "address": "Jalan Kebenaran"
+    "identity_type": "KTP",
+    "identity_number": "111111111",
+    "address": "Jalan Jalan"
 }
 
 ### Delete users by id

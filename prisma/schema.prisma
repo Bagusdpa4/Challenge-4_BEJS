@@ -14,11 +14,12 @@ datasource db {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
+  id       Int       @id @default(autoincrement())
   name     String
   email    String
   password String
   profiles Profile?
+  accounts Account[]
 
   @@map("users")
 }
@@ -32,4 +33,26 @@ model Profile {
   user_id         Int    @unique
 
   @@map("profiles")
+}
+
+model Account {
+  id                  Int           @id @default(autoincrement())
+  bank_name           String
+  bank_account_number String
+  balance             Int
+  user                User          @relation(fields: [user_id], references: [id])
+  user_id             Int
+  transactions        Transaction[]
+
+  @@map("accounts")
+}
+
+model Transaction {
+  id                     Int       @id @default(autoincrement())
+  amount                 Int
+  source_account_id      Int
+  destination_account_id Int
+  accounts               Account[]
+
+  @@map("transactions")
 }

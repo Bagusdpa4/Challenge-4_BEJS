@@ -7,31 +7,34 @@ module.exports = {
       let { name, email, password, identity_type, identity_number, address } =
         req.body;
 
-      if (
-        !name ||
-        !email ||
-        !password ||
-        !identity_type ||
-        !identity_number ||
-        !address
-      ) {
-        return res.status(400).json({
-          status: false,
-          message: "Input must be required",
-          data: null,
+        let exist = await prisma.user.findFirst({
+          where: { email },
         });
-      }
 
-      let exist = await prisma.user.findFirst({
-        where: { email },
-      });
-
-      if (exist) {
-        return res.status(400).json({
-          status: false,
-          message: "email already used!",
-        });
-      }
+        if (!name) {
+          return res.status(400).json({
+            status: false,
+            message: "Name must be required",
+            data: null,
+          });
+        } else if (!email) {
+          return res.status(400).json({
+            status: false,
+            message: "Email must be required",
+            data: null,
+          });
+        } else if (!password) {
+          return res.status(400).json({
+            status: false,
+            message: "Password must be required",
+            data: null,
+          });
+        } else if (exist) {
+          return res.status(400).json({
+            status: false,
+            message: "email already used!",
+          });
+        }
 
       let user = await prisma.user.create({
         data: {
@@ -81,7 +84,7 @@ module.exports = {
       if (!user) {
         return res.status(404).json({
           status: false,
-          message: "Cannot find user with id " + id,
+          message: `User with id ${id} not found`,
           data: null,
         });
       }
