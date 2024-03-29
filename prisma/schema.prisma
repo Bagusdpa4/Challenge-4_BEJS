@@ -36,23 +36,25 @@ model Profile {
 }
 
 model Account {
-  id                  Int           @id @default(autoincrement())
-  bank_name           String
-  bank_account_number String
-  balance             Int
-  user                User          @relation(fields: [user_id], references: [id])
-  user_id             Int
-  transactions        Transaction[]
+  id                      Int           @id @default(autoincrement())
+  bank_name               String
+  bank_account_number     String
+  balance                 Int
+  user                    User          @relation(fields: [user_id], references: [id])
+  user_id                 Int
+  sourceTransactions      Transaction[] @relation("sourceTransactions")
+  destinationTransactions Transaction[] @relation("destinationTransactions")
 
   @@map("accounts")
 }
 
 model Transaction {
-  id                     Int       @id @default(autoincrement())
+  id                     Int     @id @default(autoincrement())
   amount                 Int
+  sourceAccount          Account @relation("sourceTransactions", fields: [source_account_id], references: [id])
   source_account_id      Int
+  destinationAccount     Account @relation("destinationTransactions", fields: [destination_account_id], references: [id])
   destination_account_id Int
-  accounts               Account[]
 
   @@map("transactions")
 }
