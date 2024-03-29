@@ -14,7 +14,5 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
-  },
-  "repository": "https://github.com/Bagusdpa4/Challenge-4_BEJS.git",
-  "author": "Bagus Dwi <sugab.dwi88@gmail.com>"
+  }
 }
