@@ -104,7 +104,7 @@ module.exports = {
       const account = await prisma.account.findUnique({
         where: { id },
       });
-  
+
       if (!account) {
         return res.status(404).json({
           status: false,
@@ -112,11 +112,17 @@ module.exports = {
           data: null,
         });
       }
-  
+
+      await prisma.transaction.deleteMany({
+        where: {
+          OR: [{ source_account_id: id }, { destination_account_id: id }],
+        },
+      });
+
       await prisma.account.delete({
         where: { id },
       });
-  
+
       res.status(200).json({
         status: true,
         message: "Account deleted successfully",
@@ -125,5 +131,5 @@ module.exports = {
     } catch (error) {
       next(error);
     }
-  },  
+  },
 };
