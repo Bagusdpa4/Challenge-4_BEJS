@@ -13,6 +13,7 @@ const accountControllers = require("../../controllers/v1/accountControllers");
 router.post("/accounts", accountControllers.register);
 router.get("/accounts", accountControllers.index);
 router.get("/accounts/:id", accountControllers.show);
+router.delete("/accounts/:id", accountControllers.destroy);
 
 // API Transactions
 

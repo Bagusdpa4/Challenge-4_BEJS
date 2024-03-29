@@ -85,7 +85,7 @@ module.exports = {
       if (!accounts) {
         return res.status(404).json({
           status: false,
-          message: `User with id ${id} not found`,
+          message: `Account with id ${id} not found`,
           data: null,
         });
       }
@@ -98,4 +98,32 @@ module.exports = {
       next(error);
     }
   },
+  destroy: async (req, res, next) => {
+    let id = Number(req.params.id);
+    try {
+      let account = await prisma.account.findUnique({
+        where: { id },
+      });
+  
+      if (!account) {
+        return res.status(404).json({
+          status: false,
+          message: `Account with id ${id} not found`,
+          data: null,
+        });
+      }
+  
+      await prisma.account.delete({
+        where: { id },
+      });
+  
+      res.status(200).json({
+        status: true,
+        message: "Account deleted successfully",
+        data: null,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },  
 };

@@ -106,6 +106,18 @@ module.exports = {
         });
       }
 
+      let exist = await prisma.user.findUnique({
+        where: { id },
+      });
+  
+      if (!exist) {
+        return res.status(404).json({
+          status: false,
+          message: `User with id ${id} not found`,
+          data: null,
+        });
+      }
+
       let user = await prisma.user.update({
         where: { id },
         data: {
@@ -132,9 +144,20 @@ module.exports = {
   destroy: async (req, res, next) => {
     let id = Number(req.params.id);
     try {
+      let exist = await prisma.user.findUnique({
+        where: { id },
+      });
+  
+      if (!exist) {
+        return res.status(404).json({
+          status: false,
+          message: `User with id ${id} not found`,
+          data: null,
+        });
+      }
 
       await prisma.profile.deleteMany({
-        where: { user_id: id },
+        where: { id },
       });
       
       await prisma.user.delete({
