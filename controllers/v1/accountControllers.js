@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 module.exports = {
   register: async (req, res, next) => {
     try {
-      let { bank_name, bank_account_number, balance, user_id } = req.body;
+      const { bank_name, bank_account_number, balance, user_id } = req.body;
 
       if (!bank_name || !bank_account_number) {
         return res.status(400).json({
@@ -26,7 +26,7 @@ module.exports = {
         });
       }
 
-      let exist = await prisma.user.findUnique({
+      const exist = await prisma.user.findUnique({
         where: { id: user_id },
       });
 
@@ -38,7 +38,7 @@ module.exports = {
         });
       }
 
-      let account = await prisma.account.create({
+      const account = await prisma.account.create({
         data: {
           bank_name,
           bank_account_number,
@@ -58,7 +58,7 @@ module.exports = {
   },
   index: async (req, res, next) => {
     try {
-      let accounts = await prisma.account.findMany();
+      const accounts = await prisma.account.findMany();
       res.status(200).json({
         status: true,
         message: "success",
@@ -70,8 +70,8 @@ module.exports = {
   },
   show: async (req, res, next) => {
     try {
-      let id = Number(req.params.id);
-      let accounts = await prisma.account.findUnique({
+      const id = Number(req.params.id);
+      const accounts = await prisma.account.findUnique({
         where: { id },
         include: {
           user: {
@@ -99,9 +99,9 @@ module.exports = {
     }
   },
   destroy: async (req, res, next) => {
-    let id = Number(req.params.id);
+    const id = Number(req.params.id);
     try {
-      let account = await prisma.account.findUnique({
+      const account = await prisma.account.findUnique({
         where: { id },
       });
   

@@ -3,12 +3,12 @@ POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-    "name": "Bagas",
-    "email": "Bagas@gmail.com",
-    "password": "Bagas123",
+    "name": "Bima",
+    "email": "Bima@gmail.com",
+    "password": "Bima123",
     "identity_type": "KTP",
-    "identity_number": "000000000",
-    "address": "Jalan Mencari Hidayah"
+    "identity_number": "666666666",
+    "address": "Jalan Mencari Nafkah"
 }
 
 ### Get all users

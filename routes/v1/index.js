@@ -16,5 +16,10 @@ router.get("/accounts/:id", accountControllers.show);
 router.delete("/accounts/:id", accountControllers.destroy);
 
 // API Transactions
+const transactionsControllers = require("../../controllers/v1/transactionControllers");
+router.post("/transactions", transactionsControllers.store);
+router.get("/transactions", transactionsControllers.index);
+router.get("/transactions/:id", transactionsControllers.show);
+router.delete("/transactions/:id", transactionsControllers.destroy);
 
 module.exports = router;

@@ -4,10 +4,10 @@ const prisma = new PrismaClient();
 module.exports = {
   store: async (req, res, next) => {
     try {
-      let { name, email, password, identity_type, identity_number, address } =
+      const { name, email, password, identity_type, identity_number, address } =
         req.body;
 
-        let exist = await prisma.user.findFirst({
+        const exist = await prisma.user.findFirst({
           where: { email },
         });
 
@@ -24,7 +24,7 @@ module.exports = {
           });
         }
 
-      let user = await prisma.user.create({
+      const user = await prisma.user.create({
         data: {
           name,
           email,
@@ -49,7 +49,7 @@ module.exports = {
   },
   index: async (req, res, next) => {
     try {
-      let users = await prisma.user.findMany();
+      const users = await prisma.user.findMany();
       res.status(200).json({
         status: true,
         message: "success",
@@ -61,8 +61,8 @@ module.exports = {
   },
   show: async (req, res, next) => {
     try {
-      let id = Number(req.params.id);
-      let user = await prisma.user.findUnique({
+      const id = Number(req.params.id);
+      const user = await prisma.user.findUnique({
         where: { id },
         include: {
           profiles: true,
@@ -86,9 +86,9 @@ module.exports = {
     }
   },
   update: async (req, res, next) => {
-    let id = Number(req.params.id);
+    const id = Number(req.params.id);
     try {
-      let { name, email, password, identity_type, identity_number, address } =
+      const { name, email, password, identity_type, identity_number, address } =
         req.body;
 
       if (
@@ -106,7 +106,7 @@ module.exports = {
         });
       }
 
-      let exist = await prisma.user.findUnique({
+      const exist = await prisma.user.findUnique({
         where: { id },
       });
   
@@ -118,7 +118,7 @@ module.exports = {
         });
       }
 
-      let user = await prisma.user.update({
+      const user = await prisma.user.update({
         where: { id },
         data: {
           name,
@@ -142,9 +142,9 @@ module.exports = {
     }
   },
   destroy: async (req, res, next) => {
-    let id = Number(req.params.id);
+    const id = Number(req.params.id);
     try {
-      let exist = await prisma.user.findUnique({
+      const exist = await prisma.user.findUnique({
         where: { id },
       });
   
